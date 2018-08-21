@@ -44,6 +44,9 @@ const MaterialDialog = ({
   okLabel,
   cancelLabel,
   children,
+  containerStyle,
+  outerElement,
+  titleRightComponent,
 }) => (
   <Modal
     animationType={'fade'}
@@ -51,6 +54,8 @@ const MaterialDialog = ({
     hardwareAccelerated
     visible={visible}
     onRequestClose={onCancel}
+    swipeToClose={false}
+    swipeArea={0}
     supportedOrientations={['portrait', 'landscape']}
   >
     <TouchableWithoutFeedback onPress={onCancel}>
@@ -61,6 +66,7 @@ const MaterialDialog = ({
               styles.modalContainer,
               (title != null || (addPadding && title == null)) && styles.modalContainerPadding,
               { backgroundColor },
+              containerStyle,
             ]}
           >
             <TouchableWithoutFeedback>
@@ -68,6 +74,7 @@ const MaterialDialog = ({
                 {title != null ? (
                   <View style={scrolled ? styles.titleContainerScrolled : styles.titleContainer}>
                     <Text style={[material.title, { color: titleColor }]}>{title}</Text>
+                    {titleRightComponent ? titleRightComponent : null}
                   </View>
                 ) : null}
                 <View
@@ -104,6 +111,7 @@ const MaterialDialog = ({
             </TouchableWithoutFeedback>
           </View>
         </KeyboardAvoidingView>
+        {outerElement}
       </View>
     </TouchableWithoutFeedback>
   </Modal>
@@ -132,7 +140,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 20,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   titleContainerScrolled: {
@@ -188,6 +196,8 @@ const styles = StyleSheet.create({
 MaterialDialog.propTypes = {
   visible: PropTypes.bool.isRequired,
   children: PropTypes.element.isRequired,
+  outerElement: PropTypes.element,
+  titleRightComponent: PropTypes.element,
   onCancel: PropTypes.func.isRequired,
   onOk: PropTypes.func,
   cancelLabel: PropTypes.string,
@@ -198,6 +208,8 @@ MaterialDialog.propTypes = {
   colorAccent: PropTypes.string,
   scrolled: PropTypes.bool,
   addPadding: PropTypes.bool,
+  containerStyle: View.propTypes.style,
+  titleStyle: Text.propTypes.style,
 };
 
 MaterialDialog.defaultProps = {

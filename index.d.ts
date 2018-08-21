@@ -4,6 +4,7 @@
 // TypeScript Version: 2.2.2
 
 import React from 'react'
+import {ViewStyle, TextStyle} from 'react-native';
 
 interface MaterialDialogStatic extends Dialog {
     /**
@@ -94,6 +95,21 @@ interface Dialog {
 }
 
 interface MaterialDialogStatic extends Dialog {
+    /**
+     * Place outside of the modal container
+     */
+    outerElement?: JSX.Element
+
+    /**
+     * For overriding the container's style
+     */
+    containerStyle?: ViewStyle
+
+    /**
+     * For overriding the title's style
+     */
+    titleStyle?: TextStyle
+    
     /**
      * Content of the dialog
      */
