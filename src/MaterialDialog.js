@@ -9,6 +9,8 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   View,
+  ViewPropTypes,
+  TextPropTypes,
   Dimensions,
 } from 'react-native';
 import colors from './colors';
@@ -208,8 +210,8 @@ MaterialDialog.propTypes = {
   colorAccent: PropTypes.string,
   scrolled: PropTypes.bool,
   addPadding: PropTypes.bool,
-  containerStyle: View.propTypes.style,
-  titleStyle: Text.propTypes.style,
+  containerStyle: ViewPropTypes.style,
+  titleStyle: TextPropTypes.style,
 };
 
 MaterialDialog.defaultProps = {
