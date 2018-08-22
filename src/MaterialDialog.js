@@ -211,7 +211,7 @@ MaterialDialog.propTypes = {
   scrolled: PropTypes.bool,
   addPadding: PropTypes.bool,
   containerStyle: ViewPropTypes.style,
-  titleStyle: TextPropTypes.style,
+  titleStyle: Text.propTypes.style,
 };
 
 MaterialDialog.defaultProps = {
